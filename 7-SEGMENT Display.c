@@ -1,3 +1,6 @@
+#include "tm4c123gh6pm.h"
+#include "STD_TYPES.h"
+
 void OUT( u8 hundreds , u8 tens , u8 units)
 {
 while(1)
