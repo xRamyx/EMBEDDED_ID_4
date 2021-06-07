@@ -14,7 +14,7 @@ f32 calc_dist(f32 yo,f32 xo,f32 y1,f32 x1){
 	f32 a = pow(sin(dy / 2), 2) + pow(sin(dx / 2), 2) * cos(yo) * cos(y1);
 	f32 rad = 6371;
 	f32 c = 2 * asin(sqrt(a));
-	return rad * c * 1000;
+	return rad * c * 1000; // Converting KM to M by multiplying by 1000
 }
 
 f32 Total_Distance (f32 yo ,f32 xo ,f32 y1, f32 x1) // previous and current latitude and longitude that will be obtained from the gps module
@@ -22,7 +22,7 @@ f32 Total_Distance (f32 yo ,f32 xo ,f32 y1, f32 x1) // previous and current lati
 	f32 Total;
 	if(xo!=0 && yo !=0) // check if this is my first starting point or not
 		{
-		Total+= calc_dist(xo,yo,x1,y1);
+		Total+= calc_dist(yo,xo,y1,x1);
 	}
 	xo=x1;
 	yo=y1;
