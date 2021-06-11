@@ -15,7 +15,7 @@ int main(void)
 	f32 tot;
 	f32 lato=0;
 	f32 lono=0;
-	f32 arr[2];
+	f32 arr[2]; // arr[0] for latitude and arr[1] for longitude
 	u8 flagsw1=0;
 	u8 dest[3];
 	lcd_write_string("Enter distance");
@@ -29,7 +29,7 @@ int main(void)
 			}
 	
 			u16 destination = 0;
-			for (int i = 0; i < 3; i++){ 
+			for (int i = 0; i < 3; i++){ // Convert string to int
 				destination = (10 * destination) + (dest[i] - '0');
 			}
 			lcd_cmd(lcd_Clear);
@@ -41,21 +41,21 @@ int main(void)
 			lcd_gotoxy(1,1);
 			lcd_write_string("Distance reached");
 			lcd_gotoxy(1,2);
-			sprintf(buffer,"%d",(u16)tot);
+			sprintf(buffer,"%d",(u16)tot); // Change integer to string
 		  lcd_write_string(buffer);
 			lcd_gotoxy(5,2);
 			lcd_write_string("M");
-			if((SW2_Input()!=0x01)  || (tot>=destination)){ 
+			if((SW2_Input()!=0x01)  || (tot>=destination)){ // If switch2 is pressed >> 0x00, Turn on LEDs and stop adding new points
 				RGB_LEDs((u16)tot);
 				while(flagsw1==0){
-					if(SW1_Input()!=0x10){
+					if(SW1_Input()!=0x10){ // If switch1 is pressed >> 0x00, Continue adding new points
 						flagsw1=1;
 					}
 				}
 				flagsw1=0;
 			}
 			
-			delay_ms(1000); 
+			delay_ms(1000); // Delay between each point taken from the gps module
 		
 	}
 		
