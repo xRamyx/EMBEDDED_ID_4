@@ -79,3 +79,9 @@ void lcd_write_string(u8 *str)
 	return;
 	
 }
+void lcd_gotoxy(u8 x,u8 y)             
+{
+	u8 firstcharadr[]={0x80,0xC0}; // firstcharadr[0]=0x80  ,,,, firstcharadr[1]=0xC0 
+	lcd_cmd(firstcharadr[y-1] + x - 1);
+	delay_ms(50);
+}
