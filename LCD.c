@@ -4,27 +4,27 @@
 #include "Lcd.h"
 
 
-
+//Apply initialization sequence for LCD module
 void init_lcd (void)                     
 {
-	
+	/* Function Set  */
 	lcd_cmd(lcd_FunctionSet8bit);
 	delay_ms(1);
 
 	
-	
+	/* Entry Mode Set  */
 	lcd_cmd(lcd_EntryMode);
 	delay_ms(1);
 	
-	
+	/* Display ON OFF Control */
 	lcd_cmd(lcd_DisplayOn);
 	delay_ms(1);
 	
-
+	/* Clear Display */
 	lcd_cmd(lcd_Clear);
 	delay_ms(2);
 	
-	
+	/* Return Home  */
 	lcd_cmd(lcd_Home);
 	delay_ms(2);
 	
@@ -33,6 +33,7 @@ void init_lcd (void)
 
 
 
+//Interface to send the configuration commands to the LCD Driver
 void lcd_cmd(u8 cmd)            
 {
 	GPIO_PORTB_DATA_R=cmd;
@@ -48,7 +49,7 @@ void lcd_cmd(u8 cmd)
 
 
 
-
+//Interface to write character on LCD screen
 void lcd_write(u8 data)
 {
 	GPIO_PORTB_DATA_R=data;
@@ -63,7 +64,7 @@ void lcd_write(u8 data)
 
 
 
-
+//Interface to write string on LCD screen
 void lcd_write_string(u8 *str)         
 {
 	int		i=0;
@@ -79,9 +80,16 @@ void lcd_write_string(u8 *str)
 	return;
 	
 }
+
+
+//Interface to start the writing process at certain digit in the LCD
 void lcd_gotoxy(u8 x,u8 y)             
 {
-	u8 firstcharadr[]={0x80,0xC0}; // firstcharadr[0]=0x80  ,,,, firstcharadr[1]=0xC0 
+	u8 firstcharadr[]={0x80,0xC0}; // FirstCharAddress[0]=0x80  ,,,, FirstCharAddress[1]=0xC0 
 	lcd_cmd(firstcharadr[y-1] + x - 1);
 	delay_ms(50);
 }
+
+
+
+
