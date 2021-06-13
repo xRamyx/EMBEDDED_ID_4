@@ -1,7 +1,7 @@
 #include "GPIO_INIT.h"
 #include "tm4c123gh6pm.h"
-#include <string.h> 
-#include <stdlib.h>
+#include <string.h> // For strtok function
+#include <stdlib.h> // For strtod function
 
 void Parsing(f32 arr[]) //When an array is passed as an argument then its base address is passed to the function so whatever changes made to the copy of the array, it is changed in the original array.
 {
@@ -64,7 +64,7 @@ void Parsing(f32 arr[]) //When an array is passed as an argument then its base a
 		flon=flon-ilon;
 		flat=(flat*100)/60;
 		flon=(flon*100)/60;
-		rlat=ilat+flat;
+		rlat=ilat+flat; // Now we have latitude and longitude in decimal format instead of degrees and minutes
 		rlon=ilon+flon;
 		if(NorS[0] == 'S'){ //South means -ve
 			rlat*=-1;
