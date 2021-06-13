@@ -1,7 +1,7 @@
 #include "tm4c123gh6pm.h"
 #include "STD_TYPES.h"
 
-void OUT( u8 hundreds , u8 tens , u8 units)
+void OUT( u8 hundreds , u8 tens , u8 units) // This is an old function for the 3-digit seven segments which is replaced now by the LCD(BONUS)
 {
 while(1)
 {
